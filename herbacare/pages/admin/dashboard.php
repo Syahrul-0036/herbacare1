@@ -3,6 +3,15 @@ session_start();
 include "../../proses/koneksi.php";
 
 if (!isset($_SESSION['role']) || ($_SESSION['role'] != 'admin' && $_SESSION['role'] != 'verified')) {
+    if (!isset($_SESSION['username'])) {
+  echo "<script>
+          alert('belum login');
+          window.location.href = '../login.php';
+          </script>";
+    // header("location:../login.php?pesan=belum_login");
+    exit;
+}
+
     header("Location: ../login.php");
     exit;
 }
